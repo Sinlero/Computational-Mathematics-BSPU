@@ -1,15 +1,21 @@
 package Topic1;
 
+import java.util.ArrayList;
+
 public class Task2 {
+
     public static void main(String[] args) {
-        for (float i = -25; i <= 25; i = i + 5) {
-            System.out.printf("x = %f, taylor = %f\n", i, taylor(i));
+        float[] inputData = {25, 20, 15, 10, 5, 1, 0, -1, -5, -10, -15, -20, -25};
+        ArrayList<Float> algorithmList = new ArrayList<>();
+        ArrayList<Float> embeddedFunctionList = new ArrayList<>();
+        for (float inputdatum : inputData) {
+            algorithmList.add(algorithmTaylor(inputdatum));
+            embeddedFunctionList.add((float) Math.exp((inputdatum)));
         }
-        System.out.printf("x = %f, taylor = %f\n", 1.0, taylor(1.0F));
-        System.out.printf("x = %f, taylor = %f\n", -1.0, taylor(-1.0F));
+        print(algorithmList, embeddedFunctionList, inputData);
     }
 
-    public static float taylor(float x) {
+    public static float algorithmTaylor(float x) {
         float s = 1.0F;
         float a = x;
         float n = 1.0F;
@@ -19,5 +25,16 @@ public class Task2 {
             a = a * x / n;
         }
         return s;
+    }
+
+    static void print(ArrayList<Float> list1, ArrayList<Float> list2, float[] indputData) {
+        for (int i = 0; i < list1.size(); i++) {
+            System.out.printf("x = %5s algorithm = %15s embedded = %15s relative inaccuracy =%14s\n",
+                               indputData[i], list1.get(i), list2.get(i), relativeInaccuracy(list1.get(i), list2.get(i)));
+        }
+    }
+
+    public static Float relativeInaccuracy(float algorithm, float embedded) {
+        return Math.abs(algorithm - embedded) / algorithm;
     }
 }
