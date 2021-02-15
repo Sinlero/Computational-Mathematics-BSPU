@@ -29,7 +29,7 @@ public class Task2 {
 
     static void print(ArrayList<Float> list1, ArrayList<Float> list2, float[] indputData) {
         for (int i = 0; i < list1.size(); i++) {
-            System.out.printf("x = %5s algorithm = %15s embedded = %15s relative inaccuracy =%14s\n",
+            System.out.printf("x = %5s | algorithm = %15s | embedded = %15s | relative inaccuracy =%14s\n",
                                indputData[i], list1.get(i), list2.get(i), relativeInaccuracy(list1.get(i), list2.get(i)));
         }
     }
