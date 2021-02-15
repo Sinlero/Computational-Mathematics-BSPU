@@ -1,4 +1,4 @@
-package Topic1;
+package Topic1.Task3;
 
 public class Task3 {
 
