@@ -6,7 +6,7 @@ public class Task3 {
         double p = 2 * Math.sqrt(2);
         for (int i = 2; i <= 60; i++) {
             p = Math.pow(2, i) * Math.sqrt(2 * (1 - Math.sqrt(1 - Math.pow(p / Math.pow(2, i), 2))));
-            System.out.printf("n = %d Pn = %f  inaccuracy = %f\n", i, p, relativeInaccuracy(p, Math.PI));
+            System.out.printf("n = %2s | Pn = %f | inaccuracy = %f\n", i, p, relativeInaccuracy(p, Math.PI));
         }
     }
 
