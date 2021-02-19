@@ -11,6 +11,6 @@ public class Task3 {
     }
 
     public static double relativeInaccuracy(double algorithm, double embedded) {
-        return Math.abs(algorithm - embedded) / algorithm;
+        return Math.abs(algorithm - embedded) / embedded;
     }
 }

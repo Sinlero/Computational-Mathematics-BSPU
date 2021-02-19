@@ -35,6 +35,6 @@ public class Task2 {
     }
 
     public static Float relativeInaccuracy(float algorithm, float embedded) {
-        return Math.abs(algorithm - embedded) / algorithm;
+        return Math.abs(algorithm - embedded) / embedded;
     }
 }
