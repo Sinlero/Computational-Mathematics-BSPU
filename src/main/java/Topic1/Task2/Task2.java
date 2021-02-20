@@ -8,11 +8,21 @@ public class Task2 {
         float[] inputData = {25, 20, 15, 10, 5, 1, 0, -1, -5, -10, -15, -20, -25};
         ArrayList<Float> algorithmList = new ArrayList<>();
         ArrayList<Float> embeddedFunctionList = new ArrayList<>();
-        for (float inputdatum : inputData) {
-            algorithmList.add(algorithmTaylor(inputdatum));
-            embeddedFunctionList.add((float) Math.exp((inputdatum)));
+        ArrayList<Float> fixedAlgorithm = new ArrayList<>();
+        for (float x : inputData) {
+            algorithmList.add(algorithmTaylor(x));
+            embeddedFunctionList.add((float) Math.exp((x)));
+            if (x < 0) {
+                fixedAlgorithm.add(1 / algorithmTaylor(x * -1));
+            } else {
+                fixedAlgorithm.add(algorithmTaylor(x));
+            }
         }
+        System.out.println("Неустойчивый алгоритм");
         print(algorithmList, embeddedFunctionList, inputData);
+        System.out.println();
+        System.out.println("Устойчивый алгоритм");
+        print(fixedAlgorithm, embeddedFunctionList, inputData);
     }
 
     public static float algorithmTaylor(float x) {
