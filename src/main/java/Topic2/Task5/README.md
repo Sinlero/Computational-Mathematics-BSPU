@@ -1,1 +1,1 @@
-![img](/src/main/resources/Task5/Task5.PNG) 
+![img](/src/main/resources/Task5/Task5.png) 
