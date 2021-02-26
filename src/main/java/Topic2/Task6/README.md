@@ -1,4 +1,4 @@
-![img](/src/main/resources/Task6/Task6.PNG) 
+![img](/src/main/resources/Task6/Task6.png) 
 
 |   n   |    1    |   2   |   3   |    4   |
 |:-----:|:-------:|:------:|:-----:|:-----:|
