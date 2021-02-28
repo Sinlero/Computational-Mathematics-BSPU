@@ -1,15 +1,16 @@
 package Topic1.Task2;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Task2 {
 
     public static void main(String[] args) {
-        float[] inputData = {25, 20, 15, 10, 5, 1, 0, -1, -5, -10, -15, -20, -25};
-        ArrayList<Float> algorithmList = new ArrayList<>();
-        ArrayList<Float> embeddedFunctionList = new ArrayList<>();
-        ArrayList<Float> fixedAlgorithm = new ArrayList<>();
-        for (float x : inputData) {
+        Float[] inputData = {25.0F, 20.0F, 15.0F, 10.0F, 5.0F, 1.0F, 0.0F, -1.0F, -5.0F, -10.0F, -15.0F, -20.0F, -25.0F};
+        List<Float> algorithmList = new ArrayList<>();
+        List<Float> embeddedFunctionList = new ArrayList<>();
+        List<Float> fixedAlgorithm = new ArrayList<>();
+        for (Float x : inputData) {
             algorithmList.add(algorithmTaylor(x));
             embeddedFunctionList.add((float) Math.exp((x)));
             if (x < 0) {
@@ -25,10 +26,10 @@ public class Task2 {
         print(fixedAlgorithm, embeddedFunctionList, inputData);
     }
 
-    public static float algorithmTaylor(float x) {
-        float s = 1.0F;
-        float a = x;
-        float n = 1.0F;
+    public static Float algorithmTaylor(float x) {
+        Float s = 1.0F;
+        Float a = x;
+        Float n = 1.0F;
         while (s + a != s) {
             s += a;
             n += 1;
@@ -37,10 +38,10 @@ public class Task2 {
         return s;
     }
 
-    static void print(ArrayList<Float> list1, ArrayList<Float> list2, float[] indputData) {
+    static void print(List<Float> list1, List<Float> list2, Float[] inputData) {
         for (int i = 0; i < list1.size(); i++) {
             System.out.printf("x = %5s | algorithm = %15s | embedded = %15s | relative inaccuracy =%14s\n",
-                               indputData[i], list1.get(i), list2.get(i), relativeInaccuracy(list1.get(i), list2.get(i)));
+                               inputData[i], list1.get(i), list2.get(i), relativeInaccuracy(list1.get(i), list2.get(i)));
         }
     }
 
