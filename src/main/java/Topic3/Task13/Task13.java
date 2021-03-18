@@ -5,7 +5,8 @@ import org.apache.commons.math3.linear.RealMatrix;
 import org.apache.commons.math3.linear.RealMatrixFormat;
 
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
+import java.util.stream.DoubleStream;
 
 public class Task13 {
     public static void main(String[] args) {
@@ -32,22 +33,43 @@ public class Task13 {
         System.out.printf("Результат вычитания матриц:\n%s\n", output.format(firstMatrix.subtract(secondMatrix)));
         System.out.printf("Третья матрица:\n%s\n", output.format(thirdMatrix));
         System.out.printf("Результат перемножения матриц:\n%s\n", output.format(firstMatrix.multiply(thirdMatrix)));
-        System.out.println("||.||1 = " + thirdMatrix.getNorm()); // ||.||1 по столбцам
-        getMaxNorm(secondMatrix);
-        getMaxNorm(thirdMatrix);
+
+        System.out.println("||.||1 = " + firstMatrix.getNorm()); //  ||.||1 по столбцам
+        System.out.println("||.||1 = " + secondMatrix.getNorm());
+        System.out.println("||.||1 = " + thirdMatrix.getNorm());
+
+        System.out.println("||.||e = " + firstMatrix.getFrobeniusNorm());
+        System.out.println("||.||e = " + secondMatrix.getFrobeniusNorm());
+        System.out.println("||.||e = " + thirdMatrix.getFrobeniusNorm());
+
+//        System.out.println("||.||e = " + getEuclidNorm(firstMatrix));
+//        System.out.println("||.||e = " + getEuclidNorm(secondMatrix));
+//        System.out.println("||.||e = " + getEuclidNorm(thirdMatrix));
+
+        System.out.println("||.||infinity = " + getMaxNorm(firstMatrix));
+        System.out.println("||.||infinity = " + getMaxNorm(secondMatrix));
+        System.out.println("||.||infinity = " + getMaxNorm(thirdMatrix));
+
     }
 
-    public static void getMaxNorm(RealMatrix matrix) {  //  ||.||infinity по строкам
-        List<Double> rowValues = new ArrayList<>();
-        Double sum = new Double(0);
-        double[][] data = matrix.getData();
-        for (int i = 0; i < data.length; i++) {
-            double[] row = matrix.getRow(i);
-            for (int j = 0; j < row.length; j++) {
-                sum += Math.abs(row[j]);
-            }
-            System.out.println(sum);
-            sum = 0.0;
+    public static Double getMaxNorm(RealMatrix matrix) {  //         ||.||infinity по строкам
+        ArrayList<Double> list = new ArrayList<>();
+        for (int i = 0; i < matrix.getData().length; i++) {
+            list.add(Arrays.stream(matrix.getRow(i))
+                    .map(Math::abs)
+                    .sum());
         }
+        return list.stream().max(Double::compareTo).get();
+    }
+
+    public static Double getEuclidNorm(RealMatrix matrix) {
+        double[][] data = matrix.getData();
+        Double sum = Arrays.stream(data)
+                .map(s -> Arrays.stream(s)
+                .map(x -> Math.pow(x, 2))
+                .sum())
+                .mapToDouble(Double::doubleValue)
+                .sum();
+        return Math.sqrt(sum);
     }
 }
