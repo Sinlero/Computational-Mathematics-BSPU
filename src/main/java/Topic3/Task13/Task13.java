@@ -6,7 +6,6 @@ import org.apache.commons.math3.linear.RealMatrixFormat;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.stream.DoubleStream;
 
 public class Task13 {
     public static void main(String[] args) {
@@ -34,7 +33,7 @@ public class Task13 {
         System.out.printf("Третья матрица:\n%s\n", output.format(thirdMatrix));
         System.out.printf("Результат перемножения матриц:\n%s\n", output.format(firstMatrix.multiply(thirdMatrix)));
 
-        System.out.println("||.||1 = " + firstMatrix.getNorm()); //  ||.||1 по столбцам
+        System.out.println("||.||1 = " + firstMatrix.getNorm());
         System.out.println("||.||1 = " + secondMatrix.getNorm());
         System.out.println("||.||1 = " + thirdMatrix.getNorm());
 
@@ -52,7 +51,7 @@ public class Task13 {
 
     }
 
-    public static Double getMaxNorm(RealMatrix matrix) {  //         ||.||infinity по строкам
+    public static Double getMaxNorm(RealMatrix matrix) {
         ArrayList<Double> list = new ArrayList<>();
         for (int i = 0; i < matrix.getData().length; i++) {
             list.add(Arrays.stream(matrix.getRow(i))
