@@ -65,8 +65,8 @@ public class Task13 {
         double[][] data = matrix.getData();
         Double sum = Arrays.stream(data)
                 .map(s -> Arrays.stream(s)
-                .map(x -> Math.pow(x, 2))
-                .sum())
+                        .map(x -> Math.pow(x, 2))
+                        .sum())
                 .mapToDouble(Double::doubleValue)
                 .sum();
         return Math.sqrt(sum);
