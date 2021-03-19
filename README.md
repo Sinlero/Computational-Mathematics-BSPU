@@ -7,3 +7,5 @@ studing
 * Тема 2
   * [Task5 (вычисления сумм)](/src/main/java/Topic2/Task5)
   * [Task6 (вычисление знакопеременного ряда дробей)](/src/main/java/Topic2/Task6)
+* Тема 3
+  * [Task13 (алгебра матриц (лабораторный практикум))](/src/main/java/Topic3/Task13)
