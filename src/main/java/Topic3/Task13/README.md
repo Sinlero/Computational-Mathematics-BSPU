@@ -17,6 +17,23 @@ double[][] firstData = {
         {1, 5, -6}};
 // Вызываем библиотечную функцию для создания матрицы из двумерного массива
 RealMatrix firstMatrix = MatrixUtils.createRealMatrix(firstData);
+
+// Аналагично для следующих матриц
+// Матрица для сложиния и вычитания
+// Создаем двумерный массив с данными для матрицы
+double[][] secondData = {
+        {7, 4, 9},
+        {4, -3, -8}};
+// Вызываем библиотечную функцию для создания матрицы из двумерного массива
+        RealMatrix secondMatrix = MatrixUtils.createRealMatrix(secondData);
+// Матрица для умножения
+// Создаем двумерный массив с данными для матрицы
+double[][] thirdData = {
+        {1, 2},
+        {6, 3},
+        {7, 1}};
+// Вызываем библиотечную функцию для создания матрицы из двумерного массива
+RealMatrix thirdMatrix = MatrixUtils.createRealMatrix(thirdData);
 // Создаем объект для форматированного вывода
 RealMatrixFormat output = new RealMatrixFormat("", "", "", "", "\n", "     ");
 ```
@@ -77,14 +94,8 @@ System.out.printf("Матрица умноженная на число %d:\n%s\n
 * Решение:
 
 ```java
-// Создаем двумерный массив с данными для матрицы
-double[][] secondData = {
-        {7, 4, 9},
-        {4, -3, -8}};
-// Вызываем библиотечную функцию для создания матрицы из двумерного массива
-RealMatrix secondMatrix = MatrixUtils.createRealMatrix(secondData);
 // Сложение матриц и форматирование результата
-output.format(firstMatrix.add(secondMatrix))
+output.format(firstMatrix.add(secondMatrix));
 // Вывод в консоль
 System.out.printf("Результат сложения матриц:\n%s\n", output.format(firstMatrix.add(secondMatrix)));
 ```
@@ -92,7 +103,7 @@ System.out.printf("Результат сложения матриц:\n%s\n", out
 ```text
 Результат сложения матриц:
 10     -1     13
-5      2     -14
+5       2    -14
 ```
 
 4) подпрограмму вычитания матриц 
@@ -101,6 +112,20 @@ System.out.printf("Результат сложения матриц:\n%s\n", out
 
 Выходные данные: матрица – результат вычитания матриц
 
+* Решение:
+
+```java
+// Вычитание матрицы и форматирование результата
+output.format(firstMatrix.subtract(secondMatrix));
+// Вывод в консоль
+System.out.printf("Результат вычитания матриц:\n%s\n", output.format(firstMatrix.subtract(secondMatrix)));
+```
+* Результат вывода в консоль:
+```text
+Результат вычитания матриц:
+-4     -9     -5
+-3      8      2
+```
 
 
 5) подпрограмму умножения матриц 
@@ -109,6 +134,20 @@ System.out.printf("Результат сложения матриц:\n%s\n", out
 
 Выходные данные: матрица  размерности n ´ k – результат умножения матриц
 
+* Решение:
+
+```java
+// Вычитание матрицы и форматирование результата
+output.format(firstMatrix.multiply(thirdMatrix));
+// Вывод в консоль
+System.out.printf("Результат перемножения матриц:\n%s\n", output.format(firstMatrix.multiply(thirdMatrix)));
+```
+* Результат вывода в консоль:
+```text
+Результат перемножения матриц:
+  1     -5
+-11     11
+```
 
 
 6) подпрограммы вычисления норм (||·||1, ||·||e, ||·||∞) матрицы 
@@ -116,3 +155,42 @@ System.out.printf("Результат сложения матриц:\n%s\n", out
 Входные данные: два целых числа n и m (n – количество строк, m – количество столбцов), матрица размерности n x m
 
 Выходные данные: соответствующая норма матрицы
+
+* Решения:
+---
+* Норма - сумма:
+```java
+System.out.println("||.||1 = " + firstMatrix.getNorm());
+```
+* Результат вывода в консоль:
+```text
+||.||1 = 10.0
+```
+---
+* Евклидова норма:
+```java
+System.out.println("||.||e = " + firstMatrix.getFrobeniusNorm());
+```
+* Результат вывода в консоль:
+```text
+||.||e = 10.583005244258363
+```
+---
+* Норма - максимум:
+```java
+public static Double getMaxNorm(RealMatrix matrix) {
+    // Список для хранения суммы строки
+    ArrayList<Double> list = new ArrayList<>();
+    // Подсчет суммы в строке
+    for (int i = 0; i < matrix.getData().length; i++) {
+        list.add(Arrays.stream(matrix.getRow(i))
+                .map(Math::abs)
+                .sum());
+    }
+        return list.stream().max(Double::compareTo).get();
+}
+```
+* Результат вывода в консоль:
+```text
+||·||∞ = 12.0
+```
