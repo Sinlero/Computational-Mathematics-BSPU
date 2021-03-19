@@ -45,9 +45,9 @@ public class Task13 {
 //        System.out.println("||.||e = " + getEuclidNorm(secondMatrix));
 //        System.out.println("||.||e = " + getEuclidNorm(thirdMatrix));
 
-        System.out.println("||.||infinity = " + getMaxNorm(firstMatrix));
-        System.out.println("||.||infinity = " + getMaxNorm(secondMatrix));
-        System.out.println("||.||infinity = " + getMaxNorm(thirdMatrix));
+        System.out.println("||·||∞ = " + getMaxNorm(firstMatrix));
+        System.out.println("||·||∞ = " + getMaxNorm(secondMatrix));
+        System.out.println("||·||∞ = " + getMaxNorm(thirdMatrix));
 
     }
 
